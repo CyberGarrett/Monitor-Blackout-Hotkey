@@ -3,72 +3,75 @@ Overview
 This solution provides a way to toggle black screens on specified monitors using a hotkey. The solution consists of a Python script, a batch script, and an AutoHotkey script. When the hotkey is triggered, the Python script either creates black screens on the specified monitors or removes them if they are already present. Additionally, it adjusts the brightness of the specified monitors.
 Files Included
 
-    black_screen_G.py: The Python script that creates and toggles black screens.
-    toggle_black_screen_G.bat: A batch script to run the Python script.
-    black_screen_G.ahk: An AutoHotkey script to bind the toggle functionality to a hotkey.
-    config.ini: Configuration file to specify monitor settings.
+This Python script allows you to control the brightness of your monitors and create blackout screens on specified monitors. The script toggles between specified brightness levels and default brightness levels while creating/removing blackout screens based on a configuration file.
+Prerequisites
 
-How It Works
+    Python 3.x
+    PyQt5
+    pywin32
 
-    Python Script (black_screen_G.py):
-        Reads configuration from config.ini.
-        Creates black screens on the specified monitors.
-        Sets the brightness levels for each monitor as specified in the config.
-        Uses a temporary file to track the state of the black screens and toggle them.
+Installation
 
-    Batch Script (toggle_black_screen_G.bat):
-        Executes the Python script to perform the toggle operation.
+    Install Python packages:
 
-    AutoHotkey Script (black_screen_G.ahk):
-        Binds the batch script to a hotkey (Ctrl + Alt + C) to trigger the toggle functionality.
+    sh
 
-Setup Instructions
+    pip install pyqt5 pywin32
 
-    Install PyQt5 and screen-brightness-control:
-    Ensure you have the required libraries installed. Run the following commands in your command prompt:
+    Download and extract the script files to a directory on your computer.
 
-    cmd
+Configuration
 
-    pip install PyQt5 screen-brightness-control
-
-    Modify Paths:
-    Update the paths in the batch script (toggle_black_screen_G.bat) and AutoHotkey script (black_screen_G.ahk) to point to the correct locations of your files.
-
-    Configure Monitors:
-    Edit the config.ini file to specify the number of monitors, which monitors to black out, and the brightness levels.
-
-    Run AutoHotkey Script:
-    Start the AutoHotkey script (black_screen_G.ahk). Use the hotkey (Ctrl + Alt + C) to toggle the black screens.
-
-Configuration File (config.ini)
-
-The config.ini file should be placed in the same directory as the black_screen_G.py script. The file allows you to specify the monitor settings:
-
-Example config.ini:
+Create a config.ini file in the same directory as the script with the following format:
 
 ini
 
 [Settings]
-monitor_count = 3
-blackout_monitors = 0,2
 brightness_levels = 0,100,0
+default_brightness = 80,80,80
+blackout_monitors = 0,1,1
 
-    monitor_count: The total number of monitors connected.
-    blackout_monitors: Comma-separated indices of the monitors to black out.
-    brightness_levels: Comma-separated brightness levels for each monitor (0 to 100).
+    brightness_levels: A comma-separated list of brightness levels for each monitor when toggling on (0-100).
+    default_brightness: A comma-separated list of default brightness levels for each monitor when toggling off (0-100).
+    blackout_monitors: A comma-separated list of binary values (0 or 1) indicating which monitors to create blackout screens on (1 = blackout, 0 = no blackout).
 
-Customization
+Usage
+Running the Script
 
-For different monitor setups:
+To run the script, use the following command:
 
-    Edit the config.ini file to change the monitor settings.
-    Specify the monitors to black out and the brightness levels for each monitor.
+sh
+
+python set_brightness.py
+
+Script Functionality
+
+    The script will read the configuration file (config.ini) to get the specified brightness levels, default brightness levels, and blackout monitor settings.
+    If the script is run for the first time, it will set the brightness to the specified levels and create blackout screens on the specified monitors.
+    If the script is run again, it will switch the brightness to the default levels and remove the blackout screens.
+
+Example
+
+Given the following configuration:
+
+ini
+
+[Settings]
+brightness_levels = 0,100,0
+default_brightness = 80,80,80
+blackout_monitors = 0,1,1
+
+    Monitor 0 will have its brightness set to 0 and no blackout screen.
+    Monitor 1 will have its brightness set to 100 and a blackout screen.
+    Monitor 2 will have its brightness set to 0 and a blackout screen.
+    When toggling off, all monitors will have their brightness set to 80 and blackout screens will be removed.
 
 Troubleshooting
 
-    Ensure all paths are correctly specified in the batch and AutoHotkey scripts.
-    Verify that PyQt5 and screen-brightness-control are installed correctly.
-    Check the console output for any errors or messages that can help diagnose issues.
-    Run the batch file manually to ensure it works as expected before using the AutoHotkey script.
+    Ensure that your monitors support DDC/CI commands. You can usually enable DDC/CI in the monitor's on-screen display (OSD) settings.
 
-Enjoy!
+License
+
+This project is licensed under the GNU GPL v3.0 License. 
+
+This should cover everything needed to set up, configure, and run the script, along with providing some troubleshooting tips and license information.
