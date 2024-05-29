@@ -1,10 +1,11 @@
+I made this so I can focus when I game, read, or write, and minimize eye strain. Configurable for 1-n displays, each instance supports a single hotkey to toggle a configuration. Use multiple projects for multiple hotkeys, though I will try to integrate this in future updates.
+
 Overview
 
-This solution provides a way to toggle black screens on specified monitors using a hotkey. The solution consists of a Python script, a batch script, and an AutoHotkey script. When the hotkey is triggered, the Python script either creates black screens on the specified monitors or removes them if they are already present. Additionally, it adjusts the brightness of the specified monitors.
-Files Included
+This solution provides a way to toggle black screens on specified monitors using a hotkey. The solution consists of a Python script, a batch script, and an AutoHotkey script. When the hotkey is triggered, the Python script either creates black screens on the specified monitors or removes them if they are already present. Additionally, it adjusts the brightness of the specified monitors. This black screen on top of the darkened displays helps prevents snooping, wether from over the shoulder or inference from graphics processes. 
 
-This Python script allows you to control the brightness of your monitors and create blackout screens on specified monitors. The script toggles between specified brightness levels and default brightness levels while creating/removing blackout screens based on a configuration file.
-Prerequisites
+Packages Required
+
 
     Python 3.x
     PyQt5
@@ -22,7 +23,7 @@ Installation
 
 Configuration
 
-Create a config.ini file in the same directory as the script with the following format:
+Modify the config.ini file in the same directory as the script with the following format:
 
 ini
 
@@ -38,11 +39,7 @@ blackout_monitors = 0,1,1
 Usage
 Running the Script
 
-To run the script, use the following command:
-
-sh
-
-python set_brightness.py
+To test the script, double click the .bat file after verifying correct config values and file paths in both the .ini and .bat files.
 
 Script Functionality
 
@@ -69,9 +66,9 @@ blackout_monitors = 0,1,1
 Troubleshooting
 
     Ensure that your monitors support DDC/CI commands. You can usually enable DDC/CI in the monitor's on-screen display (OSD) settings.
+    Some cheap aftermarket display adapters (such as an HDMI to USB Display Adapter) may not support DDC/CI 
 
 License
 
 This project is licensed under the GNU GPL v3.0 License. 
 
-This should cover everything needed to set up, configure, and run the script, along with providing some troubleshooting tips and license information.
