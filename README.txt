@@ -1,5 +1,7 @@
 I made this so I can focus when I game, read, or write, and minimize eye strain. Configurable for 1-n displays, each instance supports a single hotkey to toggle a configuration. Use multiple projects for multiple hotkeys, though I will try to integrate this in future updates.
 
+For ease of use, be sure to create a shortcut to your .ahk file and add it to your start menu folder, that way the script will be live when you log in. 
+
 Overview
 
 This solution provides a way to toggle black screens on specified monitors using a hotkey. The solution consists of a Python script, a batch script, and an AutoHotkey script. When the hotkey is triggered, the Python script either creates black screens on the specified monitors or removes them if they are already present. Additionally, it adjusts the brightness of the specified monitors. This black screen on top of the darkened displays helps prevents snooping, wether from over the shoulder or inference from graphics processes. 
